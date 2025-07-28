@@ -1,161 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grace Kantrow</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Times New Roman', Times, serif;
-            line-height: 1.6;
-            color: #2d5016;
-            background-color: #f7f3e9;
-            padding: 40px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .header {
-            margin-bottom: 60px;
-        }
-
-        .name {
-            font-size: 3.5rem;
-            font-weight: bold;
-            color: #8b7355;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
-
-        .basic-info {
-            color: #6b5b47;
-            margin-bottom: 40px;
-            line-height: 1.4;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            font-style: italic;
-            color: #6b5b47;
-            margin: 40px 0 30px 0;
-            font-weight: normal;
-        }
-
-        .work-item {
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .work-item a {
-            color: #a0845c;
-            text-decoration: none;
-        }
-
-        .work-item a:hover {
-            color: #8b7355;
-            text-decoration: underline;
-        }
-
-        .work-item:not(.featured) {
-            color: #2d5016;
-        }
-
-        .work-item.featured {
-            color: #a0845c;
-            font-weight: 500;
-        }
-
-        .work-item.featured:hover {
-            color: #8b7355;
-            cursor: pointer;
-        }
-
-        .navigation {
-            margin-top: 80px;
-        }
-
-        .nav-link {
-            font-size: 1.4rem;
-            font-style: italic;
-            color: #a0845c;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 20px;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: #8b7355;
-        }
-
-        @media (max-width: 600px) {
-            body {
-                padding: 20px 15px;
-            }
-            
-            .name {
-                font-size: 2.8rem;
-            }
-            
-            .section-title {
-                font-size: 1.5rem;
-            }
-            
-            .nav-link {
-                font-size: 1.2rem;
-            }
-        }
-
-        .work-item, .nav-link {
-            transition: all 0.2s ease;
-        }
-
-        ::selection {
-            background-color: #a0845c;
-            color: #f7f3e9;
+            background-color: #e6f3ff;
+            background-image: 
+                radial-gradient(ellipse 80px 40px at 20% 30%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 50%, transparent 70%),
+                radial-gradient(ellipse 120px 60px at 70% 20%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 50%, transparent 70%),
+                radial-gradient(ellipse 100px 50px at 10% 70%, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.2) 50%, transparent 70%),
+                radial-gradient(ellipse 90px 45px at 80% 80%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 50%, transparent 70%),
+                radial-gradient(ellipse 70px 35px at 40% 60%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 50%, transparent 70%),
+                radial-gradient(ellipse 110px 55px at 60% 40%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 50%, transparent 70%);
+            background-size: 200px 150px, 250px 180px, 180px 120px, 220px 160px, 160px 100px, 240px 170px;
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <h1 class="name">grace kantrow</h1>
-        <div class="basic-info">
-           j.d. candidate, class of 2026<br>
-	 <em>santa clara university school of law</em><br>
-            b.a. sociology, magna cum laude
-	<em>kenyon college </em>
-        </div>
-    </header>
 
-    <main>
-        <section class="recent-work">
-            <h2 class="section-title">recent writing</h2>
-            
-            <div class="work-item featured">
-                <a href="https://medium.com/chatgpt-is-feeding-the-world/ai-psychosis-and-the-american-mind-25d017a7b28f">AI Psychosis and the American Mind</a> - summer 2025
-            </div>
-           
-            
-            <div class="work-item">
-                research assistant, professor jess miers, summer 2025 - present
-            </div>
-            
-            <div class="work-item">
-                Google Public Policy Fellow, Chamber of Progress, summer 2024
-            </div>
+<h1>Grace Kantrow</h1>
 
-        </section>
-    </main>
+<p>
+J.D. Candidate, Class of 2026<br>
+<i>Santa Clara University School of Law</i><br>
+B.A. Sociology, Magna Cum Laude<br>
+<i>Kenyon College</i>
+</p>
 
-    <nav class="navigation">
-        <a href="mailto:gkantrow@scu.edu" class="nav-link">email</a>
-        <a href="#" class="nav-link">cv</a>
-    </nav>
+<p><b><i>Recent Work</i></b></p>
+
+<p>
+<b><a href="https://medium.com/chatgpt-is-feeding-the-world/ai-psychosis-and-the-american-mind-25d017a7b28f">AI Psychosis and the American Mind</a></b> - Summer 2025
+</p>
+
+<p></p>
+
+<p>
+Research Assistant, Professor Jess Miers, Summer 2025 - Present<br>
+Google Public Policy Fellow, Chamber of Progress, Summer 2024
+</p>
+
+<p>
+<a href="mailto:gkantrow@scu.edu">Email</a> | 
+<a href="#">CV</a>
+</p>
+
+<p><small>Last updated: July 2025</small></p>
+
 </body>
 </html>
