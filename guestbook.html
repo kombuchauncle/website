@@ -1,14 +1,4 @@
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>grace's guestbook</title>
@@ -78,15 +68,14 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
 import { getFirestore, collection, addDoc, query, orderBy, limit, onSnapshot, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
 
-// Firebase configuration - you'll need to add your config
+// Firebase configuration
 const firebaseConfig = {
-  // Add your Firebase config here
-  apiKey: "your-api-key",
-  authDomain: "your-project.firebaseapp.com",
-  projectId: "your-project-id",
-  storageBucket: "your-project.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "your-app-id"
+  apiKey: "AIzaSyAJaiYPOYFHO22Bm2qxmwC4Tyy0Fk0x2sM",
+  authDomain: "cv-gk-e4e82.firebaseapp.com",
+  projectId: "cv-gk-e4e82",
+  storageBucket: "cv-gk-e4e82.firebasestorage.app",
+  messagingSenderId: "197129878517",
+  appId: "1:197129878517:web:be4307c806df375d6b7ebc"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -167,16 +156,3 @@ loadEntries();
 
 </body>
 </html>
-    apiKey: "AIzaSyAJaiYPOYFHO22Bm2qxmwC4Tyy0Fk0x2sM",
-    authDomain: "cv-gk-e4e82.firebaseapp.com",
-    projectId: "cv-gk-e4e82",
-    storageBucket: "cv-gk-e4e82.firebasestorage.app",
-    messagingSenderId: "197129878517",
-    appId: "1:197129878517:web:be4307c806df375d6b7ebc",
-    measurementId: "G-40L4EJPFTQ"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
