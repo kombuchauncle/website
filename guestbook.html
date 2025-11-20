@@ -66,11 +66,13 @@
 
 <p><small>last updated: <span id="lastUpdated"></span></small></p>
 
+<p><small>visitor counter: <span id="visitorCount">loading...</span></small></p>
+
 </center>
 
 <script type="module">
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
-import { getFirestore, collection, addDoc, query, orderBy, limit, onSnapshot, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
+import { getFirestore, collection, addDoc, query, orderBy, limit, onSnapshot, serverTimestamp, doc, getDoc, setDoc, increment } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -160,8 +162,31 @@ const months = ['january', 'february', 'march', 'april', 'may', 'june',
 const now = new Date();
 document.getElementById('lastUpdated').textContent = `${months[now.getMonth()]} ${now.getFullYear()}`;
 
+// Visitor counter
+async function updateVisitorCount() {
+  const counterRef = doc(db, 'siteStats', 'guestbookVisitorCount');
+  
+  try {
+    // Increment the counter
+    await setDoc(counterRef, {
+      count: increment(1)
+    }, { merge: true });
+    
+    // Get the updated count
+    const counterDoc = await getDoc(counterRef);
+    if (counterDoc.exists()) {
+      const count = counterDoc.data().count;
+      document.getElementById('visitorCount').textContent = count.toLocaleString();
+    }
+  } catch (error) {
+    console.error('Error updating visitor count:', error);
+    document.getElementById('visitorCount').textContent = '---';
+  }
+}
+
 // Load entries when page loads
 loadEntries();
+updateVisitorCount();
 </script>
 
 </body>
