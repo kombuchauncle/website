@@ -64,7 +64,7 @@
 
 <p><small>this guestbook is powered by authentic 90s technology</small></p>
 
-<p><small>last updated: july 2025</small></p>
+<p><small>last updated: <span id="lastUpdated"></span></small></p>
 
 </center>
 
@@ -153,6 +153,12 @@ document.getElementById('guestbookForm').addEventListener('submit', async (e) =>
     alert('oops! something went wrong. please try again.');
   }
 });
+
+// Auto-generate current month and year for last updated
+const months = ['january', 'february', 'march', 'april', 'may', 'june', 
+               'july', 'august', 'september', 'october', 'november', 'december'];
+const now = new Date();
+document.getElementById('lastUpdated').textContent = `${months[now.getMonth()]} ${now.getFullYear()}`;
 
 // Load entries when page loads
 loadEntries();
