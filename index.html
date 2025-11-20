@@ -66,6 +66,8 @@ google public policy fellow, chamber of progress - summer 2024
 
 <p><small>last updated: <span id="lastUpdated"></span></small></p>
 
+<p><small>visitor counter: <span id="visitorCount">loading...</span></small></p>
+
 </center>
 
 <script>
@@ -74,6 +76,49 @@ const months = ['january', 'february', 'march', 'april', 'may', 'june',
                'july', 'august', 'september', 'october', 'november', 'december'];
 const now = new Date();
 document.getElementById('lastUpdated').textContent = `${months[now.getMonth()]} ${now.getFullYear()}`;
+</script>
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
+import { getFirestore, doc, getDoc, setDoc, increment } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
+
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAJaiYPOYFHO22Bm2qxmwC4Tyy0Fk0x2sM",
+  authDomain: "cv-gk-e4e82.firebaseapp.com",
+  projectId: "cv-gk-e4e82",
+  storageBucket: "cv-gk-e4e82.firebasestorage.app",
+  messagingSenderId: "197129878517",
+  appId: "1:197129878517:web:be4307c806df375d6b7ebc"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Visitor counter
+async function updateVisitorCount() {
+  const counterRef = doc(db, 'siteStats', 'visitorCount');
+  
+  try {
+    // Increment the counter
+    await setDoc(counterRef, {
+      count: increment(1)
+    }, { merge: true });
+    
+    // Get the updated count
+    const counterDoc = await getDoc(counterRef);
+    if (counterDoc.exists()) {
+      const count = counterDoc.data().count;
+      document.getElementById('visitorCount').textContent = count.toLocaleString();
+    }
+  } catch (error) {
+    console.error('Error updating visitor count:', error);
+    document.getElementById('visitorCount').textContent = '---';
+  }
+}
+
+// Update count when page loads
+updateVisitorCount();
 </script>
 
 </body>
