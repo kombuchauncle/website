@@ -64,9 +64,17 @@ google public policy fellow, chamber of progress - summer 2024
 
 <p><small>this website is powered by authentic 90s technology</small></p>
 
-<p><small>last updated: november 2025</small></p>
+<p><small>last updated: <span id="lastUpdated"></span></small></p>
 
 </center>
+
+<script>
+// Auto-generate current month and year
+const months = ['january', 'february', 'march', 'april', 'may', 'june', 
+               'july', 'august', 'september', 'october', 'november', 'december'];
+const now = new Date();
+document.getElementById('lastUpdated').textContent = `${months[now.getMonth()]} ${now.getFullYear()}`;
+</script>
 
 </body>
 </html>
