@@ -108,11 +108,13 @@ google public policy fellow, chamber of progress - summer 2024
 
 <p><small>visitor counter: <span id="visitorCount">loading...</span></small></p>
 
-<p><img src="/favicon_io/apple-touch-icon.png" width="40" height="40" alt="logo" style="mix-blend-mode: multiply; cursor: pointer;" onclick="flyPigs()"></p>
+<p><img id="favicon-logo" src="/favicon_io/apple-touch-icon.png" width="40" height="40" alt="logo" style="mix-blend-mode: multiply; cursor: pointer;"></p>
 
 </center>
 
 <script>
+document.getElementById('favicon-logo').addEventListener('click', flyPigs);
+
 function flyPigs() {
   const count = 6;
   for (let i = 0; i < count; i++) {
