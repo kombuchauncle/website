@@ -70,14 +70,15 @@ google public policy fellow, chamber of progress - summer 2024
 <a href="https://www.are.na/bob-by-05rk2q59aam/spiritual-web">spiritual web</a><br>
 </p>
 <p>
-<a href="mailto:gkantrow@scu.edu">email</a> | 
-<a href="#">cv</a>
+<a href="#" onclick="copyEmail(event)">email</a> |
+<a href="/cv.pdf">cv</a>
 </p>
+<span id="email-copied" style="font-size:0.85em; display:none;">copied to clipboard!</span>
 
 <p><b><i>tools i built</i></b></p>
 <p>
 <a href="https://radiofree.gracekantrow.com" class="tool-button">radio</a>
-<a href="https://evidence.gracekantrow.com" class="tool-button">evidence mbes</a>
+<a href="https://evidence.gracekantrow.com/study-tool.html" class="tool-button">evidence mbes</a>
 <a href="https://type.gracekantrow.com" class="tool-button">typing test</a>
 </p>
 
@@ -94,6 +95,15 @@ google public policy fellow, chamber of progress - summer 2024
 </center>
 
 <script>
+function copyEmail(e) {
+  e.preventDefault();
+  navigator.clipboard.writeText('gkantrow@scu.edu').then(() => {
+    const msg = document.getElementById('email-copied');
+    msg.style.display = 'inline';
+    setTimeout(() => msg.style.display = 'none', 2000);
+  });
+}
+
 // Auto-generate current month and year
 const months = ['january', 'february', 'march', 'april', 'may', 'june', 
                'july', 'august', 'september', 'october', 'november', 'december'];
