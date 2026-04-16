@@ -1,0 +1,17 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow anyone to read and write to the siteStats collection (visitor counters)
+    match /siteStats/{document=**} {
+      allow read, write: if true;
+    }
+
+    // Allow anyone to read guestbook entries
+    match /guestbook/{document=**} {
+      allow read: if true;
+      allow create: if true;
+      allow update, delete: if false;
+    }
+  }
+}
