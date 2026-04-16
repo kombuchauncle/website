@@ -156,8 +156,18 @@ async function updateVisitorCount() {
   }
 }
 
-// Update count when page loads
-updateVisitorCount();
+// Only count if this browser hasn't been counted before
+if (!localStorage.getItem('visited')) {
+  localStorage.setItem('visited', 'true');
+  updateVisitorCount();
+} else {
+  const counterRef = doc(db, 'siteStats', 'visitorCount');
+  getDoc(counterRef).then(counterDoc => {
+    if (counterDoc.exists()) {
+      document.getElementById('visitorCount').textContent = counterDoc.data().count.toLocaleString();
+    }
+  });
+}
 </script>
 
 </body>
