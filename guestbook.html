@@ -23,6 +23,12 @@
             padding: 10px;
             border-bottom: 1px solid #ccc;
         }
+        .honeypot {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+        }
     </style>
 </head>
 <body>
@@ -54,6 +60,7 @@
 <td><input type="submit" value="sign guestbook"></td>
 </tr>
 </table>
+<input type="text" id="website" name="website" class="honeypot" tabindex="-1" autocomplete="off">
 </form>
 
 <p><b><i>recent entries:</i></b></p>
@@ -125,19 +132,65 @@ function loadEntries() {
   });
 }
 
+// Spam filter checks
+function isSpam(name, comments) {
+  // Check honeypot field
+  if (document.getElementById('website').value !== '') {
+    return true;
+  }
+
+  // Check rate limiting (5 minutes between submissions)
+  const lastSubmit = localStorage.getItem('lastGuestbookSubmit');
+  if (lastSubmit) {
+    const timeSince = Date.now() - parseInt(lastSubmit);
+    if (timeSince < 5 * 60 * 1000) {
+      alert('please wait a few minutes before submitting again');
+      return true;
+    }
+  }
+
+  // Check for URLs
+  const urlPattern = /(https?:\/\/|www\.)/i;
+  if (urlPattern.test(comments) || urlPattern.test(name)) {
+    alert('links are not allowed in guestbook entries');
+    return true;
+  }
+
+  // Check minimum length
+  if (comments.trim().length < 3) {
+    alert('please write a longer message');
+    return true;
+  }
+
+  // Check for excessive caps (more than 70% uppercase)
+  const capsCount = (comments.match(/[A-Z]/g) || []).length;
+  const letterCount = (comments.match(/[a-zA-Z]/g) || []).length;
+  if (letterCount > 0 && capsCount / letterCount > 0.7) {
+    alert('please don\'t use excessive caps');
+    return true;
+  }
+
+  return false;
+}
+
 // Handle form submission
 document.getElementById('guestbookForm').addEventListener('submit', async (e) => {
   e.preventDefault();
-  
+
   const name = document.getElementById('name').value;
   const location = document.getElementById('location').value;
   const comments = document.getElementById('comments').value;
-  
+
   if (!name || !comments) {
     alert('please fill in your name and comments');
     return;
   }
-  
+
+  // Run spam filter
+  if (isSpam(name, comments)) {
+    return;
+  }
+
   try {
     await addDoc(collection(db, 'guestbook'), {
       name: name,
@@ -145,11 +198,14 @@ document.getElementById('guestbookForm').addEventListener('submit', async (e) =>
       comments: comments,
       timestamp: serverTimestamp()
     });
-    
+
+    // Set rate limit timestamp
+    localStorage.setItem('lastGuestbookSubmit', Date.now().toString());
+
     // Clear form
     document.getElementById('guestbookForm').reset();
     alert('thanks for signing my guestbook!');
-    
+
   } catch (error) {
     console.error('Error adding entry:', error);
     alert('oops! something went wrong. please try again.');
