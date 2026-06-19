@@ -157,6 +157,8 @@ new Chart(ctx, {
     plugins: {
       legend: { display: false },
       tooltip: {
+        mode: 'point',
+        intersect: true,
         callbacks: {
           title: (items) => {
             const raw = items[0].raw;
