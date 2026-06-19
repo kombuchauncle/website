@@ -17,33 +17,87 @@
 </head>
 <body>
 
-<h1>First A Storm of the Year from 2000-2026</h1>
+<h1>First Named Storm of the Atlantic Hurricane Season, 1950–2026</h1>
 
-<div style="position: relative; width: 100%; height: 520px;">
+<div style="position: relative; width: 100%; height: 600px;">
     <canvas id="stormChart"></canvas>
 </div>
+
+<p style="font-size: 14px; max-width: 800px; line-height: 1.6; color: #333; margin-top: 16px;">
+Data source: NOAA Atlantic Hurricane Database (HURDAT2), 1950–2017, supplemented with NHC records for 2018–2026. Chart shows the formation date of the first named tropical storm or hurricane (sustained winds ≥ 39 mph) of each Atlantic season. Two carryover storms were excluded: Alice (1955) and Zeta (2006), both of which formed in the preceding season and were still active on January 1. Note that naming conventions changed over time: from 1950–1952, storms used the Joint Army/Navy Phonetic Alphabet (Able, Baker, Charlie); female-only names were used from 1953–1978; alternating male and female names have been used since 1979. The dashed line marks June 28, the average first-storm date calculated across all 77 seasons shown (1950–2026).
+</p>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 const storms = [
-  { year: 2000, name: 'Alberto', month: 8, day: 3 },
+  { year: 1950, name: 'Able', month: 8, day: 12 },
+  { year: 1951, name: 'Able', month: 5, day: 16 },
+  { year: 1952, name: 'Able', month: 8, day: 24 },
+  { year: 1953, name: 'Alice', month: 5, day: 26 },
+  { year: 1954, name: 'Alice', month: 6, day: 24 },
+  { year: 1955, name: 'Brenda', month: 7, day: 31 },
+  { year: 1956, name: 'Anna', month: 7, day: 26 },
+  { year: 1957, name: 'Audrey', month: 6, day: 24 },
+  { year: 1958, name: 'Alma', month: 6, day: 14 },
+  { year: 1959, name: 'Arlene', month: 5, day: 29 },
+  { year: 1960, name: 'Abby', month: 7, day: 9 },
+  { year: 1961, name: 'Anna', month: 7, day: 20 },
+  { year: 1962, name: 'Alma', month: 8, day: 27 },
+  { year: 1963, name: 'Arlene', month: 8, day: 2 },
+  { year: 1964, name: 'Abby', month: 8, day: 7 },
+  { year: 1965, name: 'Anna', month: 8, day: 21 },
+  { year: 1966, name: 'Alma', month: 6, day: 6 },
+  { year: 1967, name: 'Arlene', month: 8, day: 30 },
+  { year: 1968, name: 'Abby', month: 6, day: 2 },
+  { year: 1969, name: 'Anna', month: 7, day: 27 },
+  { year: 1970, name: 'Alma', month: 5, day: 20 },
+  { year: 1971, name: 'Arlene', month: 7, day: 5 },
+  { year: 1972, name: 'Agnes', month: 6, day: 16 },
+  { year: 1973, name: 'Alice', month: 7, day: 3 },
+  { year: 1974, name: 'Alma', month: 8, day: 13 },
+  { year: 1975, name: 'Amy', month: 6, day: 29 },
+  { year: 1976, name: 'Anna', month: 7, day: 30 },
+  { year: 1977, name: 'Anita', month: 8, day: 30 },
+  { year: 1978, name: 'Amelia', month: 7, day: 31 },
+  { year: 1979, name: 'Ana', month: 6, day: 22 },
+  { year: 1980, name: 'Allen', month: 8, day: 2 },
+  { year: 1981, name: 'Arlene', month: 5, day: 7 },
+  { year: 1982, name: 'Alberto', month: 6, day: 3 },
+  { year: 1983, name: 'Alicia', month: 8, day: 15 },
+  { year: 1984, name: 'Arthur', month: 8, day: 29 },
+  { year: 1985, name: 'Ana', month: 7, day: 16 },
+  { year: 1986, name: 'Andrew', month: 6, day: 6 },
+  { year: 1987, name: 'Arlene', month: 8, day: 11 },
+  { year: 1988, name: 'Alberto', month: 8, day: 7 },
+  { year: 1989, name: 'Allison', month: 6, day: 26 },
+  { year: 1990, name: 'Arthur', month: 7, day: 24 },
+  { year: 1991, name: 'Ana', month: 7, day: 4 },
+  { year: 1992, name: 'Andrew', month: 8, day: 17 },
+  { year: 1993, name: 'Arlene', month: 6, day: 19 },
+  { year: 1994, name: 'Alberto', month: 7, day: 2 },
+  { year: 1995, name: 'Allison', month: 6, day: 3 },
+  { year: 1996, name: 'Arthur', month: 6, day: 19 },
+  { year: 1997, name: 'Ana', month: 7, day: 1 },
+  { year: 1998, name: 'Alex', month: 7, day: 29 },
+  { year: 1999, name: 'Arlene', month: 6, day: 12 },
+  { year: 2000, name: 'Alberto', month: 8, day: 4 },
   { year: 2001, name: 'Allison', month: 6, day: 5 },
-  { year: 2002, name: 'Arthur', month: 7, day: 14 },
-  { year: 2003, name: 'Ana', month: 4, day: 20 },
-  { year: 2004, name: 'Alex', month: 7, day: 31 },
-  { year: 2005, name: 'Arlene', month: 6, day: 8 },
-  { year: 2006, name: 'Alberto', month: 6, day: 10 },
-  { year: 2007, name: 'Andrea', month: 5, day: 9 },
+  { year: 2002, name: 'Arthur', month: 7, day: 15 },
+  { year: 2003, name: 'Ana', month: 4, day: 21 },
+  { year: 2004, name: 'Alex', month: 8, day: 1 },
+  { year: 2005, name: 'Arlene', month: 6, day: 9 },
+  { year: 2006, name: 'Alberto', month: 6, day: 11 },
+  { year: 2007, name: 'Barry', month: 6, day: 1 },
   { year: 2008, name: 'Arthur', month: 5, day: 31 },
-  { year: 2009, name: 'Ana', month: 8, day: 15 },
-  { year: 2010, name: 'Alex', month: 6, day: 25 },
+  { year: 2009, name: 'Ana', month: 8, day: 12 },
+  { year: 2010, name: 'Alex', month: 6, day: 26 },
   { year: 2011, name: 'Arlene', month: 6, day: 28 },
   { year: 2012, name: 'Alberto', month: 5, day: 19 },
   { year: 2013, name: 'Andrea', month: 6, day: 5 },
   { year: 2014, name: 'Arthur', month: 7, day: 1 },
-  { year: 2015, name: 'Ana', month: 5, day: 8 },
-  { year: 2016, name: 'Alex', month: 1, day: 12 },
-  { year: 2017, name: 'Arlene', month: 4, day: 19 },
+  { year: 2015, name: 'Ana', month: 5, day: 9 },
+  { year: 2016, name: 'Alex', month: 1, day: 14 },
+  { year: 2017, name: 'Arlene', month: 4, day: 20 },
   { year: 2018, name: 'Alberto', month: 5, day: 25 },
   { year: 2019, name: 'Andrea', month: 5, day: 20 },
   { year: 2020, name: 'Arthur', month: 5, day: 16 },
@@ -60,9 +114,7 @@ function dayOfYear(month, day) {
   return days[month - 1] + day;
 }
 
-const avgDOY = dayOfYear(6, 20);
-
-const labels = storms.map(s => s.year);
+const avgDOY = dayOfYear(6, 28);
 const dataPoints = storms.map(s => dayOfYear(s.month, s.day));
 
 function doyToLabel(doy) {
@@ -89,9 +141,9 @@ new Chart(ctx, {
       },
       {
         label: 'Average (Jun 20)',
-        data: [{ x: 1999.5, y: avgDOY }, { x: 2026.5, y: avgDOY }],
+        data: [{ x: 1949.5, y: avgDOY }, { x: 2026.5, y: avgDOY }],
         type: 'line',
-        borderColor: '#E24B4A',
+        borderColor: '#888780',
         borderWidth: 1.5,
         borderDash: [6, 4],
         pointRadius: 0,
@@ -112,7 +164,7 @@ new Chart(ctx, {
           },
           label: (item) => {
             const raw = item.raw;
-            if (!raw.name) return 'Avg: Jun 20';
+            if (!raw.name) return 'Avg: Jun 28';
             return raw.name + ' — ' + doyToLabel(raw.y);
           }
         }
@@ -121,11 +173,11 @@ new Chart(ctx, {
     scales: {
       x: {
         type: 'linear',
-        min: 1999.5,
+        min: 1949.5,
         max: 2026.5,
         ticks: {
-          stepSize: 1,
-          callback: v => Number.isInteger(v) ? v : '',
+          stepSize: 5,
+          callback: v => Number.isInteger(v) && v % 5 === 0 ? v : '',
           maxRotation: 45,
           autoSkip: false,
           font: { size: 11 }
@@ -135,7 +187,7 @@ new Chart(ctx, {
       },
       y: {
         min: 1,
-        max: 240,
+        max: 255,
         ticks: {
           callback: v => doyToLabel(v),
           stepSize: 14,
